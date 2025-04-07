@@ -52,55 +52,105 @@
   <!-- Navigation bar -->
   <div class="navbar">
     <div class="nav-title">Phantom</div>
+    <div class="nav-buttons">
+      <button id="downloadBtn">⬇️ Download HTML</button>
+      <button id="openBtn">📄 Open HTML</button>
+    </div>
   </div>
 
   <script>
-    // Function to open phantom.html content inside an about:blank page
-    function openInBlank() {
+    // Function to download phantom.html
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const phantomHtmlContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Phantom</title>
+          <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+          <style>
+            body {
+              background-color: #00001a;
+              color: white;
+              font-family: 'Lilita One', cursive;
+            }
+            .navbar {
+              background-color: black;
+              color: white;
+              padding: 1rem 2rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .nav-title {
+              font-size: 2rem;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="navbar">
+            <div class="nav-title">Phantom</div>
+          </div>
+          <div class="phantom-content">
+            <h1>Welcome to Phantom</h1>
+            <p>This page contains the embedded content you wanted!</p>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob([phantomHtmlContent], { type: 'text/html' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'phantom.html';
+      link.click();
+    });
+
+    // Function to open phantom.html in about:blank
+    document.getElementById('openBtn').addEventListener('click', function() {
       const win = window.open('about:blank', '_blank');
       win.document.open();
       win.document.write(`
-        <html>
-          <head>
-            <title>Phantom</title>
-            <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-            <style>
-              body { background-color: #00001a; color: white; font-family: 'Lilita One', cursive; }
-              h1, p { text-align: center; }
-              #map { height: 400px; width: 100%; }
-              .navbar { background-color: black; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-              .nav-title { font-size: 2rem; }
-            </style>
-          </head>
-          <body>
-            <div class="navbar">
-              <div class="nav-title">Phantom</div>
-            </div>
-            <div class="phantom-content">
-              <h1>Welcome to Phantom</h1>
-              <p>This page is now integrated with the Google Maps API. Here is an example of a map:</p>
-              <div id="map"></div>
-            </div>
-            <script>
-              // Google Maps API initialization
-              function initMap() {
-                const map = new google.maps.Map(document.getElementById('map'), {
-                  center: { lat: -34.397, lng: 150.644 },
-                  zoom: 8
-                });
-              }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
-          </body>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Phantom</title>
+          <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+          <style>
+            body {
+              background-color: #00001a;
+              color: white;
+              font-family: 'Lilita One', cursive;
+            }
+            .navbar {
+              background-color: black;
+              color: white;
+              padding: 1rem 2rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .nav-title {
+              font-size: 2rem;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="navbar">
+            <div class="nav-title">Phantom</div>
+          </div>
+          <div class="phantom-content">
+            <h1>Welcome to Phantom</h1>
+            <p>This page contains the embedded content you wanted!</p>
+          </div>
+        </body>
         </html>
       `);
       win.document.close();
-    }
-
-    // Open the page when the window loads
-    window.onload = function() {
-      openInBlank();
-    }
+    });
   </script>
 
 </body>
