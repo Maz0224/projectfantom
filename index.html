@@ -46,9 +46,8 @@
       color: #00001a;
     }
 
-    /* Additional styling for the about:blank version */
     .phantom-content {
-      margin-top: 80px; /* To prevent content from being covered by the navbar */
+      margin-top: 80px;
       text-align: center;
     }
 
@@ -179,11 +178,9 @@
               margin-top: 80px; /* To prevent content from being covered by the navbar */
               text-align: center;
             }
-            /* Google search form */
             .search-bar {
               margin-top: 30px;
             }
-
             .search-bar input {
               padding: 0.5rem;
               font-size: 1rem;
@@ -192,7 +189,6 @@
               border-radius: 5px;
               border: none;
             }
-
             .search-bar button {
               padding: 0.5rem 1rem;
               background-color: #4285F4;
@@ -202,7 +198,6 @@
               font-size: 1rem;
               cursor: pointer;
             }
-
             .search-bar button:hover {
               background-color: #357ae8;
             }
@@ -235,18 +230,6 @@
         </html>
       `);
       win.document.close();
-
-      // Reattach event listeners in the new window
-      win.onload = function() {
-        const searchBtn = win.document.getElementById('searchBtn');
-        searchBtn.addEventListener('click', function() {
-          const query = win.document.getElementById('searchQuery').value;
-          if (query) {
-            const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-            win.open(url, '_blank');
-          }
-        });
-      };
     });
   </script>
 
