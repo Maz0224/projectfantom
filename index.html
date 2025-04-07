@@ -226,7 +226,7 @@
             document.getElementById('searchBtn').addEventListener('click', function() {
               const query = document.getElementById('searchQuery').value;
               if (query) {
-                const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                const url = \`https://www.google.com/search?q=\${encodeURIComponent(query)}\`;
                 window.open(url, '_blank');
               }
             });
@@ -235,6 +235,18 @@
         </html>
       `);
       win.document.close();
+
+      // Reattach event listeners in the new window
+      win.onload = function() {
+        const searchBtn = win.document.getElementById('searchBtn');
+        searchBtn.addEventListener('click', function() {
+          const query = win.document.getElementById('searchQuery').value;
+          if (query) {
+            const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            win.open(url, '_blank');
+          }
+        });
+      };
     });
   </script>
 
