@@ -30,28 +30,17 @@
       gap: 1rem;
     }
 
-    .nav-buttons button {
-      background-color: transparent;
-      color: white;
-      border: 2px solid white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Lilita One', cursive;
-      font-size: 1rem;
-    }
-
-    .nav-buttons button:hover {
-      background-color: white;
-      color: #00001a;
-    }
-
     /* Phantom HTML Styles (inside embedded HTML) */
     .phantom-content {
       background-color: #00001a;
       color: white;
       padding: 20px;
       font-family: 'Lilita One', cursive;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
     }
   </style>
 </head>
@@ -60,33 +49,27 @@
   <!-- Navigation bar -->
   <div class="navbar">
     <div class="nav-title">Phantom</div>
-    <div class="nav-buttons">
-      <button onclick="openInBlank()">📄</button>
-      <button onclick="downloadFile()">⬇️</button>
-    </div>
   </div>
 
   <script>
-    // Phantom HTML content embedded inside the script
+    // Phantom HTML content with Google Maps API integration embedded inside the script
     const phantomHTML = `
       <div class="phantom-content">
         <h1>Welcome to Phantom</h1>
-        <p>This is an embedded page content for Phantom HTML.</p>
-        <p>Feel free to update or add more content here as needed.</p>
+        <p>This page is now integrated with the Google Maps API. Here is an example of a map:</p>
+        <div id="map"></div>
       </div>
+      <script>
+        // Google Maps API initialization
+        function initMap() {
+          const map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
     `;
-
-    // Function to download the phantom.html file
-    function downloadFile() {
-      const blob = new Blob([phantomHTML], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'phantom.html';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
 
     // Function to open phantom.html content inside an about:blank page
     function openInBlank() {
@@ -100,6 +83,7 @@
             <style>
               body { background-color: #00001a; color: white; font-family: 'Lilita One', cursive; }
               h1, p { text-align: center; }
+              #map { height: 400px; width: 100%; }
             </style>
           </head>
           <body>
@@ -108,6 +92,11 @@
         </html>
       `);
       win.document.close();
+    }
+
+    // Open the page when the window loads
+    window.onload = function() {
+      openInBlank();
     }
   </script>
 
