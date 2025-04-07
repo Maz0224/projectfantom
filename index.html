@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Phantom</title>
+  <title>Phantom</title>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
   <style>
     body {
@@ -19,31 +19,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
     }
 
     .nav-title {
       font-size: 2rem;
     }
 
-    .nav-buttons {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav-buttons button {
-      background-color: transparent;
-      color: white;
-      border: 2px solid white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Lilita One', cursive;
-      font-size: 1rem;
-    }
-
-    .nav-buttons button:hover {
-      background-color: white;
-      color: #00001a;
+    .phantom-content {
+      margin-top: 80px; /* To prevent content from being covered by the navbar */
+      text-align: center;
     }
   </style>
 </head>
@@ -52,106 +40,12 @@
   <!-- Navigation bar -->
   <div class="navbar">
     <div class="nav-title">Phantom</div>
-    <div class="nav-buttons">
-      <button id="downloadBtn">⬇️ Download HTML</button>
-      <button id="openBtn">📄 Open HTML</button>
-    </div>
   </div>
 
-  <script>
-    // Function to download phantom.html
-    document.getElementById('downloadBtn').addEventListener('click', function() {
-      const phantomHtmlContent = `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Phantom</title>
-          <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-          <style>
-            body {
-              background-color: #00001a;
-              color: white;
-              font-family: 'Lilita One', cursive;
-            }
-            .navbar {
-              background-color: black;
-              color: white;
-              padding: 1rem 2rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .nav-title {
-              font-size: 2rem;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="navbar">
-            <div class="nav-title">Phantom</div>
-          </div>
-          <div class="phantom-content">
-            <h1>Welcome to Phantom</h1>
-            <p>This page contains the embedded content you wanted!</p>
-          </div>
-        </body>
-        </html>
-      `;
-
-      const blob = new Blob([phantomHtmlContent], { type: 'text/html' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'phantom.html';
-      link.click();
-    });
-
-    // Function to open phantom.html in about:blank
-    document.getElementById('openBtn').addEventListener('click', function() {
-      const win = window.open('about:blank', '_blank');
-      win.document.open();
-      win.document.write(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Phantom</title>
-          <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-          <style>
-            body {
-              background-color: #00001a;
-              color: white;
-              font-family: 'Lilita One', cursive;
-            }
-            .navbar {
-              background-color: black;
-              color: white;
-              padding: 1rem 2rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .nav-title {
-              font-size: 2rem;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="navbar">
-            <div class="nav-title">Phantom</div>
-          </div>
-          <div class="phantom-content">
-            <h1>Welcome to Phantom</h1>
-            <p>This page contains the embedded content you wanted!</p>
-          </div>
-        </body>
-        </html>
-      `);
-      win.document.close();
-    });
-  </script>
+  <div class="phantom-content">
+    <h1>Welcome to Phantom</h1>
+    <p>This page contains the embedded content you wanted!</p>
+  </div>
 
 </body>
 </html>
