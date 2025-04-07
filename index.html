@@ -51,6 +51,34 @@
       margin-top: 80px; /* To prevent content from being covered by the navbar */
       text-align: center;
     }
+
+    /* Google search form */
+    .search-bar {
+      margin-top: 30px;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 50%;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .search-bar button {
+      padding: 0.5rem 1rem;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #357ae8;
+    }
   </style>
 </head>
 <body>
@@ -151,6 +179,33 @@
               margin-top: 80px; /* To prevent content from being covered by the navbar */
               text-align: center;
             }
+            /* Google search form */
+            .search-bar {
+              margin-top: 30px;
+            }
+
+            .search-bar input {
+              padding: 0.5rem;
+              font-size: 1rem;
+              width: 50%;
+              margin-right: 10px;
+              border-radius: 5px;
+              border: none;
+            }
+
+            .search-bar button {
+              padding: 0.5rem 1rem;
+              background-color: #4285F4;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              font-size: 1rem;
+              cursor: pointer;
+            }
+
+            .search-bar button:hover {
+              background-color: #357ae8;
+            }
           </style>
         </head>
         <body>
@@ -160,7 +215,22 @@
           <div class="phantom-content">
             <h1>Welcome to Phantom</h1>
             <p>This page contains the embedded content you wanted!</p>
+            <div class="search-bar">
+              <input type="text" id="searchQuery" placeholder="Search Google...">
+              <button id="searchBtn">Search</button>
+            </div>
           </div>
+
+          <script>
+            // Google search function
+            document.getElementById('searchBtn').addEventListener('click', function() {
+              const query = document.getElementById('searchQuery').value;
+              if (query) {
+                const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                window.open(url, '_blank');
+              }
+            });
+          </script>
         </body>
         </html>
       `);
